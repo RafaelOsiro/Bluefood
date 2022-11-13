@@ -1,0 +1,66 @@
+* {
+	font-family: "Verdana";
+}
+
+body {
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+}
+
+a {
+	color: #000000;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/*div do logotipo do index*/
+div#divLogotipoSistema {
+	background-color: #1e9bde;
+	height: 70px;
+}
+
+/*img do logotipo do index*/
+img#imgLogotipoSistema {
+	height: 60%;
+	vertical-align: middle;
+}
+
+/* span que ajuda alinhar o logotipo pra ficar no meio da listra azul */
+span#spanAuxiliarDeAlinhamentoVertical {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+/* img do Ícone do usuário */
+img#imgIconeUsuario{
+	width: 100px;
+}
+
+h1 {
+	color: #1e9bde;
+	background: #eeeeee;
+	text-transform: uppercase;
+	font-style: italic;
+	font-size: 20px;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	border-left: 10px solid #1e9bde;
+	border-right: 10px solid #1e9bde;
+	border-top: 2px solid #1e9bde;
+	border-bottom: 2px solid #1e9bde;
+	border-radius: 30px;
+}
+
+div#divMensagemDeErro {
+	background-color: #d40000;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+	color: #ffffff;
+}
