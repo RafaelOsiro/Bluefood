@@ -3,40 +3,90 @@
     <head>
     <meta charset="UTF-8">
         <title>BlueFood</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/BlueFoodEstiloSistema.css"/>
     </head>
     <body>
         <header>
-            <div>
+            <div id="divLogotipoSistema">
+            <span id="spanAuxiliarDeAlinhamentoVertical"></span>
                 <a href="">
-                    <img src="..\images\bf_logotipoSistema.png">
+                    <img id="imgLogotipoSistema" src="..\images\bf_logotipoSistema.png"/>
                 </a>
             </div>
-            <div>
+            <div id="divUsuarioLogado">
                 Olá Nome do Usuário!
                 <br/>
-                <img src="..\images\bf_iconeCarrinho.png"/>
+                <img id="imgIconeCarrinho" src="..\images\bf_iconeCarrinho.png"/>
             </div>
         </header>
         <br/><br/>
         <!--  Cabeçalho - Fim -->
         
         <div>
+            <h1>É hora de rangar!</h1>
+            <form method="post" action="">
+                <fieldset id="fieldsetFiltros">
+                <input type="text" name="busca" placeholder="Buscar por..."/>
+                <input type="button" value="Procurar">
+                </fieldset>
+            </form>
+        </div>
+        
+         <div id="divCategoriasComidaGeral">
+            <div id="divCategoriasComidaOpcao">
+                <a href="#">
+                    <img alt="" id="imgCategoriaComida" src="..\images\sys_categoriaChurrasco.png"/>
+                    <br/>
+                    <span>Churrasco</span>
+                </a>
+            </div>
+            <div id="divCategoriasComidaOpcao">
+                <a href="#">
+                    <img alt="" id="imgCategoriaComida" src="..\images\sys_categoriaHamburguer.png"/>
+                    <br/>
+                    <span>Hamburger</span>
+                </a>
+            </div>
+            <div id="divCategoriasComidaOpcao">
+                <a href="#">
+                    <img alt="" id="imgCategoriaComida" src="..\images\sys_categoriaPizza.png"/>
+                    <br/>
+                    <span>Pizza</span>
+                </a>
+            </div>
+            <div id="divCategoriasComidaOpcao">
+                <a href="#">
+                    <img alt="" id="imgCategoriaComida" src="..\images\sys_categoriaSalada.png"/>
+                    <br/>
+                    <span>Salada</span>
+                </a>
+            </div>
+            <div id="divCategoriasComidaOpcao">
+                <a href="#">
+                    <img alt="" id="imgCategoriaComida" src="..\images\sys_categoriaSobremesa.png"/>
+                    <br/>
+                    <span>Sobremesa</span>
+                </a>
+            </div>
+        </div>
+        
+        <div>
             <h1>Resultados</h1>
             <fieldset>
                 <legend>Filtros</legend>
                 <input type="button" value="Entrega grátis"><br/>
-                <input type="button" value="Maior preço"> <input type="button" value="Menor preço"/><br/>
-                <input type="button" value="Maior taxa"> <input type="button" value="Menor taxa"/> <br/>
-                <input type="button" value="Maior tempo"> <input type="button" value="Menor tempo"/> <br/> 
+                <input type="button" id="inputSelecionado" value="Maior preço"> <input type="button" value="Menor preço"/><br/>
+                <input type="button" id="inputSelecionado" value="Maior taxa"> <input type="button" value="Menor taxa"/> <br/>
+                <input type="button" value="Maior tempo"> <input type="button" id="inputSelecionado" value="Menor tempo"/> <br/> 
             </fieldset>
         </div>
         
         <div>
-            <div>
+            <div id="divRestauranteOpcao">
                 <a href="#">
-                    <img src="..\images\sys_restauranteBubgerKirg.png"/>
+                    <img src="..\images\sys_restauranteBubgerKirg.png" id="imgRestauranteOpcao"/>
                     <br/>
-                    <span>Nome do Restaurante</span>
+                    <span id="restauranteOpcaoTitulo">Nome do Restaurante</span>
                     <br/>
                     <span>Categoria de Comida</span>
                     <br/>
@@ -46,11 +96,11 @@
             </div>
             <br/><br/>
             
-             <div>
+             <div id="divRestauranteOpcao">
                 <a href="#">
-                    <img src="..\images\sys_restauranteMcNaldos.png"/>
+                    <img src="..\images\sys_restauranteMcNaldos.png" id="imgRestauranteOpcao"/>
                     <br/>
-                    <span>Nome do Restaurante</span>
+                    <span id="restauranteOpcaoTitulo">Nome do Restaurante</span>
                     <br/>
                     <span>Categoria de Comida</span>
                     <br/>
@@ -60,11 +110,11 @@
             </div>
             <br/><br/>
             
-             <div>
+             <div id="divRestauranteOpcao">
                 <a href="#">
-                    <img src="..\images\sys_restauranteSbubby.png"/>
+                    <img src="..\images\sys_restauranteSbubby.png" id="imgRestauranteOpcao"/>
                     <br/>
-                    <span>Nome do Restaurante</span>
+                    <span id="restauranteOpcaoTitulo">Nome do Restaurante</span>
                     <br/>
                     <span>Categoria de Comida</span>
                     <br/>
