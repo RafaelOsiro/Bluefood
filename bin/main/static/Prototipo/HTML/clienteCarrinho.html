@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
         <title>BlueFood</title>
         <link rel="stylesheet" type="text/css" href="../CSS/BlueFoodEstiloSistema.css"/>
+        <script>
+        function isNumberKey(evt) {
+        	var charCode = (evt.which) ? evt.which : event.keyCode;
+        	if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        		return false;
+        	}
+        	return true;
+        }
+        </script>
     </head>
     <body>
         <header>
@@ -60,13 +69,13 @@
         
         <div>
             <span>Cartão de Crédito</span><br/>
-            <input type="text" name="Cartão"/>
+            <input type="text" name="Cartão" onkeypress="return isNumberKey(event)"/>
         </div>
         
         <div>
-            <input type="button" value="Finalizar o pedido">
+            <input type="button" value="Finalizar o pedido" onclick="location.href='clientePedido.html';">
             <br/>
-            <input type="button" value="Voltar">
+            <input type="button" value="Voltar" onclick="location.href='clienteHome.html';">
         </div>
                 
          <!-- Rodapé - Início -->
