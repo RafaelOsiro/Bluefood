@@ -12,26 +12,41 @@
 		            <input type="hidden" th:field="*{id}"/>
 		        
 					<label for="nome" >Nome:</label><br/>
-					<input type="text" id="nome" name="nome" placeholder="Nome..." th:field="*{nome}"/><br/><br/>
-					<div id="divMensagemDeErro">
-					   Aqui vai um exemplo de mensagem de erro
-					</div>
+					<input type="text" id="nome" name="nome" placeholder="Nome..." th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')}? inputError : ''"/><br/><br th:if="!${#fields.hasErrors('nome')}"/>
+					<div id="divMensagemDeErro" th:if="${#fields.hasErrors('nome')}">
+					   <span th:errors="*{nome}"></span>
+					</div><br th:if="${#fields.hasErrors('nome')}"/><br th:if="${#fields.hasErrors('nome')}"/>
 					
 					<label for="cpf" >CPF:</label><br/>
-					<input type="text" id="cpf" name="cpf" placeholder="CPF..." th:field="*{cpf}"/><br/><br/>
+					<input type="text" id="cpf" name="cpf" placeholder="CPF..." th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')}? inputError : ''"/><br/><br th:if="!${#fields.hasErrors('cpf')}"/>
+					<div id="divMensagemDeErro" th:if="${#fields.hasErrors('cpf')}">
+                       <span th:errors="*{cpf}"></span>
+                    </div><br th:if="${#fields.hasErrors('cpf')}"/><br th:if="${#fields.hasErrors('cpf')}"/>
 					
 					<label for="email" >E-mail:</label><br/>
-					<input type="text" id="email" name="email" placeholder="E-mail..." th:field="*{email}"/><br/><br/>
-					
+					<input type="text" id="email" name="email" placeholder="E-mail..." th:field="*{email}" th:classappend="${#fields.hasErrors('email')}? inputError : ''"/><br/><br th:if="!${#fields.hasErrors('email')}"/>
+					<div id="divMensagemDeErro" th:if="${#fields.hasErrors('email')}">
+                       <span th:errors="*{email}"></span>
+                    </div><br th:if="${#fields.hasErrors('email')}"/><br th:if="${#fields.hasErrors('email')}"/>
+                    
 					<label for="telefone" >Telefone:</label><br/>
-					<input type="text" id="telefone" name="telefone" placeholder="Telefone..." th:field="*{telefone}"/><br/><br/>
-					
+					<input type="text" id="telefone" name="telefone" placeholder="Telefone..." th:field="*{telefone}" th:classappend="${#fields.hasErrors('telefone')}? inputError : ''"/><br/><br th:if="!${#fields.hasErrors('telefone')}"/>
+					<div id="divMensagemDeErro" th:if="${#fields.hasErrors('telefone')}">
+                       <span th:errors="*{telefone}"></span>
+                    </div><br th:if="${#fields.hasErrors('telefone')}"/><br th:if="${#fields.hasErrors('telefone')}"/>
+                    
 					<label for="cep" >CEP:</label><br/>
-					<input type="text" id="cep" name="cep" placeholder="CEP..." th:field="*{cep}"/><br/><br/>
+					<input type="text" id="cep" name="cep" placeholder="CEP..." th:field="*{cep}" th:classappend="${#fields.hasErrors('cep')}? inputError : ''"/><br/><br th:if="!${#fields.hasErrors('cep')}"/>
+					<div id="divMensagemDeErro" th:if="${#fields.hasErrors('cep')}">
+                       <span th:errors="*{cep}"></span>
+                    </div><br th:if="${#fields.hasErrors('cep')}"/><br th:if="${#fields.hasErrors('cep')}"/>
 					
 					<label for="senha" >Senha:</label><br/>
-					<input type="password" id="senha" name="senha" placeholder="Senha..." th:field="*{senha}"/><br/><br/>
-					
+					<input type="password" id="senha" name="senha" placeholder="Senha..." th:field="*{senha}" th:classappend="${#fields.hasErrors('senha')}? inputError : ''"/><br/><br th:if="!${#fields.hasErrors('senha')}"/>
+					<div id="divMensagemDeErro" th:if="${#fields.hasErrors('senha')}">
+                       <span th:errors="*{senha}"></span>
+                    </div><br th:if="${#fields.hasErrors('senha')}"/><br th:if="${#fields.hasErrors('senha')}"/>
+                    
 					<input type="submit" th:value="${!editMode} ? 'Cadastrar' : 'Alterar'"/>
 		        </fieldset>
 		    </form>
