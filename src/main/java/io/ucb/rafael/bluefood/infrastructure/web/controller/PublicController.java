@@ -21,6 +21,7 @@ public class PublicController {
 	@GetMapping("/cliente/new")
 	public String funcNewCliente(Model model) {
 		model.addAttribute("cliente", new Cliente());
+		ControllerHelper.funcSetEditMode(model, false);
 		return "cliente-cadastro";
 	}
 	
