@@ -37,7 +37,7 @@
             <h1>Opções</h1>
             <fieldset>
                 <legend>Filtros</legend>
-                <input type="button" value="Promoções"/>
+                <input type="button" value="Promoções" id="inputSelecionado"/>
                 <input type="button" value="Saladas"/>
                 <input type="button" value="Bebidas"/>
                 <input type="button" value="Pizzas"/>
@@ -49,7 +49,7 @@
         </div>
         
         <div>
-            <img src="..\images\sys_comidaPizzaCalabresa.png"/>
+            <img src="..\images\sys_comidaPizzaCalabresa.png" id="imgRestauranteOpcao"/>
             <br/>
             <span>Pizza de Calabresa</span>
             <br/>
@@ -73,12 +73,12 @@
                 
                 </textarea>
                 <br/><br/>
-                <input type="button" value="Adicionar ao carrinho"/>
+                <input type="button" value="Adicionar ao carrinho" onclick="location.href='clienteCarrinho.html';"/>
             </form>
         </div>
         
         <div>
-            <img src="..\images\sys_comidaHamburguer.png"/>
+            <img src="..\images\sys_comidaHamburguer.png" id="imgRestauranteOpcao"/>
             <br/>
             <span>Hamburguer</span>
             <br/>
@@ -102,11 +102,11 @@
                 
                 </textarea>
                 <br/><br/>
-                <input type="button" value="Adicionar ao carrinho"/>
+                <input type="button" value="Adicionar ao carrinho" onclick="location.href='clienteCarrinho.html';"/>
             </form>
         </div>
         
-        <input type="button" value="Voltar">
+        <input type="button" value="Voltar" onclick="location.href='clienteHome.html';"/>
                 
          <!-- Rodapé - Início -->
     </body>
