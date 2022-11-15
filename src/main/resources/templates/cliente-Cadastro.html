@@ -2,9 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
 	<body>
 		<div layout:fragment="content">
-		   <h1>Cadastro de Cliente</h1>
-		    <div id="divMensagemDeSucesso">
-		        Aqui vai um exemplo de mensagem de sucesso
+		   <h1 th:if="${!editMode}">Cadastro de Cliente</h1>
+		   <h1 th:if="${editMode}">Editar dados do cliente</h1>
+		    <div id="divMensagemDeSucesso" th:if="${msg != null}">
+		        <span th:text="${msg}"></span>
 		    </div><br/>
 		    <form method="post" th:action="${!editMode}?  @{/public/cliente/save} : @{/cliente/save}" th:object="${cliente}">
 		        <fieldset>

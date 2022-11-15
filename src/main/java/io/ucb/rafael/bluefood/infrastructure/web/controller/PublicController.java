@@ -1,8 +1,11 @@
 package io.ucb.rafael.bluefood.infrastructure.web.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +29,16 @@ public class PublicController {
 	}
 	
 	@PostMapping(path = "/cliente/save")
-	public String funcSaveCliente(@ModelAttribute("cliente") Cliente cliente) {
-		clienteService.funcSaveCliente(cliente);
+	public String funcSaveCliente(@ModelAttribute("cliente") @Valid Cliente cliente,
+			Errors errors,
+			Model model) {
+		
+		if (!errors.hasErrors()) {
+			clienteService.funcSaveCliente(cliente);
+			model.addAttribute("msg", "Cliente gravado com sucsso");
+		}
+		
+		ControllerHelper.funcSetEditMode(model, false);
 		return "cliente-cadastro";
 	}
 }
