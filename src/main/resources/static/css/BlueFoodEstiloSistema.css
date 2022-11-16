@@ -1,0 +1,223 @@
+* {
+	font-family: "Verdana";
+}
+
+body {
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+}
+
+a {
+	color: #000000;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/*div do logotipo do index*/
+div#divLogotipoSistema {
+	background-color: #1e9bde;
+	height: 70px;
+}
+
+/*img do logotipo do index*/
+img#imgLogotipoSistema {
+	height: 60%;
+	vertical-align: middle;
+}
+
+/* span que ajuda alinhar o logotipo pra ficar no meio da listra azul */
+span#spanAuxiliarDeAlinhamentoVertical {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+/* img do Ícone do usuário */
+img#imgIconeUsuario{
+	width: 100px;
+}
+
+/* Mudando os atributos do h1 de todas as páginas HTML */
+h1 {
+	color: #1e9bde;
+	background: #eeeeee;
+	text-transform: uppercase;
+	font-style: italic;
+	font-size: 20px;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	border-left: 10px solid #1e9bde;
+	border-right: 10px solid #1e9bde;
+	border-top: 2px solid #1e9bde;
+	border-bottom: 2px solid #1e9bde;
+	border-radius: 30px;
+}
+
+/* Mudando os atributos do div de mensagem de erro */
+div#divMensagemDeErro {
+	background-color: #d40000;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+	color: #ffffff;
+	padding: 10px;
+}
+
+/* Mudando os atributos de uma faixa das páginas do cliente */
+div#divUsuarioLogado {
+	background-color: #7bc2e5;
+	color: #ffffff;
+	line-height: 40px;
+}
+
+/* Mudando os atributos do ícone do carrinho de compras */
+img#imgIconeCarrinho {
+	height: 50px;
+	
+}
+
+/* Mudando os atributos do campo entorno dos formulários */
+fieldset {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	border-width: 2px;
+	border-radius: 10px;
+}
+
+/* Mudando os atributos dos inputs, textarea e select */
+input, textarea, select {
+	border: 2px solid #1e9bde;
+	height: 35px;
+	margin-bottom: 6px;
+}
+
+/* Mudando o tamanho do textarea */
+textarea {
+	width: 300px;
+	height: 100px;
+}
+
+/* Mudando os atributos dos campos de texto e de senha */
+input[type=text], input[type=password], select {
+	font-size: 16px;
+	width: 140px;
+	padding-left: 8px;
+	border-radius: 10px;
+}
+
+/* Mudando os atributos do botão e do submit */
+input[type=button], input[type=submit] {
+	background-color: #1e9bde;
+	border-bottom:  3px solid #0153b0;
+	border-top:  1px solid #0153b0;
+	border-left:  1px solid #0153b0;
+	border-right:  3px solid #0153b0;
+	color: #ffffff;
+	font-weight: bold;
+	text-transform: uppercase;
+	border-radius: 5px;
+	padding: 5px 8px;
+}
+
+/* Mudando as cores do botão e do submit quando o mouse passar em cima */
+input[type=button]:hover, input[type=submit] {
+	background-color: #69c5ee;
+	border-color: #1e9bde;
+}
+
+/* Mudando os atributos da tabela */
+table {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ffffff;
+	font-size: 14px;
+	border-spacing: 1px;
+}
+
+/* Mudando as cores das linhas pares das linhas da tabela*/
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+/* Mudando os atributos do título da tabela */
+th {
+	background-color: #1e9bde;
+	color: #ffffff;
+	text-transform: uppercase;
+	padding: 3px;
+}
+
+/* Adicionando padding das linhas e colunas da tabela */
+td {
+	padding: 10px;
+}
+
+/* Modificando cada elemento de categoria de comida */
+div#divCategoriasComidaOpcao {
+	width: 20%;
+	height: 130px;
+	float: left;
+}
+
+/* Modificando o div geral das categorias de comida */
+div#divCategoriasComidaGeral {
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Modificando o div da categoria de comida */
+img#imgCategoriaComida {
+	height: 50%;
+}
+
+/* Modificando os fieldsets do filtro */
+fieldset#fieldsetFiltros {
+	border-width: 3px;
+	border-radius: 5px;
+}
+
+/* Modificando o botão para que quando ficar selecionado mudar a cor */
+input#inputSelecionado {
+	background-color: #69c5ee;
+	border-color: #1e9bde;
+}
+
+/* Modificando os logotipos do restaurante */
+img#imgRestauranteOpcao {
+	height: 130px;
+}
+
+/* Modificando os atributos do nome do restaurante */
+span#restauranteOpcaoTitulo {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+/* Modificando os atributos do div que aparecem os restaurantes */
+div#divRestauranteOpcao {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Modificando os div com mensagem de sucesso */
+div#divMensagemDeSucesso {
+	background-color: #0baf00;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+	color: #ffffff;
+	padding: 10px;
+}
+
+.inputError {
+	border: 2px solid #ff2828;
+}
