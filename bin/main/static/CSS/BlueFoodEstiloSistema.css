@@ -87,6 +87,7 @@ fieldset {
 	margin-left: auto;
 	margin-right: auto;
 	border-width: 2px;
+	border-radius: 10px;
 }
 
 /* Mudando os atributos dos inputs, textarea e select */
@@ -107,6 +108,7 @@ input[type=text], input[type=password], select {
 	font-size: 16px;
 	width: 140px;
 	padding-left: 8px;
+	border-radius: 10px;
 }
 
 /* Mudando os atributos do botão e do submit */
@@ -178,6 +180,7 @@ img#imgCategoriaComida {
 /* Modificando os fieldsets do filtro */
 fieldset#fieldsetFiltros {
 	border-width: 3px;
+	border-radius: 5px;
 }
 
 /* Modificando o botão para que quando ficar selecionado mudar a cor */

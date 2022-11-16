@@ -12,7 +12,44 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	public void funcSaveCliente(Cliente cliente) {
+	
+	
+	public void funcSaveCliente(Cliente cliente) throws ValidationException {
+		
+		if(!funcValidateEmail(cliente.getEmail(), cliente.getId())) {
+			throw new ValidationException("O e-mail está duplicado");
+		}
+		
+		// 
+		if (cliente.getId() != null) {
+			Cliente clienteDB = clienteRepository.findById(cliente.getId()).orElseThrow();
+			cliente.setSenha(clienteDB.getSenha());
+			
+		// Gravação e criptografando a senha quando for usuário novo
+		} else {
+			cliente.funcEncryptPassword();
+		}
+		
 		clienteRepository.save(cliente);
+	}
+	
+	private boolean funcValidateEmail(String email, Integer id) {
+		
+		Cliente cliente = clienteRepository.findByEmail(email);
+		
+		// Verificar se o cliente existe no banco de dados
+		if (cliente != null) {
+			
+			// Verificar se o ID do cliente é nulo
+			if (id == null) {
+				return false;
+			}
+			
+			// Compara se o ID buscado do banco de dados é igual do email querendo ser registrado
+			if(!cliente.getId().equals(id)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
