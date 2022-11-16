@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import io.ucb.rafael.bluefood.util.StringUtils;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,4 +51,8 @@ public class Usuario implements Serializable {
 	@Column(length = 11)
 	@NotNull(message = "O TELEFONE não pode ser nulo")
 	private String telefone;
+	
+	public void funcEncryptPassword() {
+		this.senha = StringUtils.funcEncrypt(this.senha);
+	}
 }

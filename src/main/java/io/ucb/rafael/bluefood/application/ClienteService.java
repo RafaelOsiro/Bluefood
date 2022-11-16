@@ -12,10 +12,22 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
+	
+	
 	public void funcSaveCliente(Cliente cliente) throws ValidationException {
 		
 		if(!funcValidateEmail(cliente.getEmail(), cliente.getId())) {
 			throw new ValidationException("O e-mail está duplicado");
+		}
+		
+		// 
+		if (cliente.getId() != null) {
+			Cliente clienteDB = clienteRepository.findById(cliente.getId()).orElseThrow();
+			cliente.setSenha(clienteDB.getSenha());
+			
+		// Gravação e criptografando a senha quando for usuário novo
+		} else {
+			cliente.funcEncryptPassword();
 		}
 		
 		clienteRepository.save(cliente);
