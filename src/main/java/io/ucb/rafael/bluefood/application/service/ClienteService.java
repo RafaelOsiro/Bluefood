@@ -1,10 +1,13 @@
-package io.ucb.rafael.bluefood.application;
+package io.ucb.rafael.bluefood.application.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.ucb.rafael.bluefood.domain.cliente.Cliente;
 import io.ucb.rafael.bluefood.domain.cliente.ClienteRepository;
+import io.ucb.rafael.bluefood.domain.restaurante.Restaurante;
+import io.ucb.rafael.bluefood.domain.restaurante.RestauranteRepository;
 
 @Service
 public class ClienteService {
@@ -12,8 +15,10 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
+	@Autowired
+	private RestauranteRepository restauranteRepository;
 	
-	
+	@Transactional
 	public void funcSaveCliente(Cliente cliente) throws ValidationException {
 		
 		if(!funcValidateEmail(cliente.getEmail(), cliente.getId())) {
@@ -34,6 +39,12 @@ public class ClienteService {
 	}
 	
 	private boolean funcValidateEmail(String email, Integer id) {
+		
+		Restaurante restaurante = restauranteRepository.findByEmail(email);
+		
+		if (restaurante != null) {
+			return false;
+		}
 		
 		Cliente cliente = clienteRepository.findByEmail(email);
 		

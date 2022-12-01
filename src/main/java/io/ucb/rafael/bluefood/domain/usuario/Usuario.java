@@ -42,7 +42,7 @@ public class Usuario implements Serializable {
 	private String email;
 	
 	@NotBlank(message = "A SENHA não pode ser vazia")
-	@Size(max = 60, message = "A SENHA é muito grande")
+	@Size(max = 70, message = "A SENHA é muito grande")
 	@NotNull(message = "A SENHA não pode ser nula")
 	private String senha;
 	

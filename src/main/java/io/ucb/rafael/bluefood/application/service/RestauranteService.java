@@ -1,7 +1,8 @@
-package io.ucb.rafael.bluefood.application;
+package io.ucb.rafael.bluefood.application.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.ucb.rafael.bluefood.domain.cliente.Cliente;
 import io.ucb.rafael.bluefood.domain.cliente.ClienteRepository;
@@ -12,20 +13,41 @@ import io.ucb.rafael.bluefood.domain.restaurante.RestauranteRepository;
 public class RestauranteService {
 	
 	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
 	private RestauranteRepository restauranteRepository;
 	
+	@Autowired
+	private ImageService imageService;
+	
+	@Transactional
 	public void funcSaveRestaurante(Restaurante restaurante) throws ValidationException {
 		
 		if(!funcValidateEmail(restaurante.getEmail(), restaurante.getId())) {
 			throw new ValidationException("O e-mail está duplicado");
 		}
 		
-		
-		
-		restauranteRepository.save(restaurante);
+		if (restaurante.getId() != null) {
+			Restaurante restauranteDB = restauranteRepository.findById(restaurante.getId()).orElseThrow();
+			restaurante.setSenha(restauranteDB.getSenha());
+			
+		// Gravação e criptografando a senha quando for usuário novo
+		} else {
+			restaurante.funcEncryptPassword();
+			restaurante = restauranteRepository.save(restaurante);
+			restaurante.setLogotipoFileName();
+			imageService.funcUploadLogtipo(restaurante.getLogotipoFile(), restaurante.getLogotipo());
+		}
 	}
 	
 	private boolean funcValidateEmail(String email, Integer id) {
+		
+		Cliente cliente = clienteRepository.findByEmail(email);
+		
+		if (cliente != null) {
+			return false;
+		}
 		
 		Restaurante restaurante = restauranteRepository.findByEmail(email);
 		

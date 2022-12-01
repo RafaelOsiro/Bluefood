@@ -17,11 +17,15 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import io.ucb.rafael.bluefood.domain.cliente.Cliente;
+import org.springframework.web.multipart.MultipartFile;
+
 import io.ucb.rafael.bluefood.domain.usuario.Usuario;
+import io.ucb.rafael.bluefood.infrastructure.web.validator.UploadConstraint;
+import io.ucb.rafael.bluefood.util.FileType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @SuppressWarnings("serial")
 @Getter
@@ -40,6 +44,9 @@ public class Restaurante extends Usuario {
 	@Size(max = 80)
 	private String logotipo;
 	
+	@UploadConstraint(acceptedTypes = {FileType.PNG, FileType.JPG}, message = "O arquivo de imagem não é PNG ou JPG")
+	private transient MultipartFile logotipoFile;
+	
 	@NotNull(message = "A taxa de entrega não pode ser vazia")
 	@Min(0)
 	@Max(99)
@@ -56,5 +63,16 @@ public class Restaurante extends Usuario {
 			joinColumns =  @JoinColumn(name = "restaurante_id"),
 			inverseJoinColumns = @JoinColumn(name = "categoria_restaurante_id")
 			)
+	@Size(min = 1, message = "O restaurante precisa ter pelo menos uma categoria")
+	@ToString.Exclude
 	private Set<CategoriaRestaurante> categorias = new HashSet<>(0);
+	
+	public void setLogotipoFileName() {
+		
+		if (getId() == null) {
+			throw new IllegalStateException("É preciso gravar o registro primeiro");
+		}
+		
+		this.logotipo = String.format("%04d-logo.%s", getId(), FileType.of(logotipoFile.getContentType()).getExtension());
+	}
 }

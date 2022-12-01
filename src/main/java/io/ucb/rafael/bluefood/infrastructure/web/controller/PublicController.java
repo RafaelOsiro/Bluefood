@@ -1,5 +1,6 @@
 package io.ucb.rafael.bluefood.infrastructure.web.controller;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import io.ucb.rafael.bluefood.application.ClienteService;
-import io.ucb.rafael.bluefood.application.ValidationException;
+import io.ucb.rafael.bluefood.application.service.ClienteService;
+import io.ucb.rafael.bluefood.application.service.RestauranteService;
+import io.ucb.rafael.bluefood.application.service.ValidationException;
 import io.ucb.rafael.bluefood.domain.cliente.Cliente;
+import io.ucb.rafael.bluefood.domain.restaurante.CategoriaRestauranteRepository;
 import io.ucb.rafael.bluefood.domain.restaurante.Restaurante;
 
 @Controller
@@ -23,9 +26,35 @@ public class PublicController {
 	@Autowired
 	private ClienteService clienteService;
 
+	@Autowired
+	private RestauranteService restauranteService;
+	
+	@Autowired
+	private CategoriaRestauranteRepository categoriaRestauranteRepository;
+
 	@GetMapping("/cliente/new")
-	public String funcNewCliente(Model model) {
+	public String newCliente(Model model) {
 		model.addAttribute("cliente", new Cliente());
+		ControllerHelper.funcSetEditMode(model, false);
+		return "cliente-cadastro";
+	}
+	
+	@PostMapping(path = "/cliente/save")
+	public String saveCliente(
+			@ModelAttribute("cliente") @Valid Cliente cliente, 
+			Errors errors, 
+			Model model) {
+
+		if (!errors.hasErrors()) {
+			try {
+				clienteService.funcSaveCliente(cliente);
+				model.addAttribute("msg", "Cliente gravado com sucesso!");
+				
+			} catch (ValidationException e) {
+				errors.rejectValue("email", null, e.getMessage());
+			}
+		}
+
 		ControllerHelper.funcSetEditMode(model, false);
 		return "cliente-cadastro";
 	}
@@ -34,25 +63,29 @@ public class PublicController {
 	public String funcNewRestaurante(Model model) {
 		model.addAttribute("restaurante", new Restaurante());
 		ControllerHelper.funcSetEditMode(model, false);
+		
+		ControllerHelper.addCategoriasToRequest(categoriaRestauranteRepository, model);
+		
 		return "restaurante-cadastro";
 	}
 	
-	@PostMapping(path = "/cliente/save")
-	public String funcSaveCliente(@ModelAttribute("cliente") @Valid Cliente cliente,
+	@PostMapping(path = "/restaurante/save")
+	public String funcSaveRestaurante(@ModelAttribute("restaurante") @Valid Restaurante restaurante,
 			Errors errors,
 			Model model) {
 		
 		if (!errors.hasErrors()) {
 			
 			try {
-				clienteService.funcSaveCliente(cliente);
-				model.addAttribute("msg", "Cliente gravado com sucsso");
+				restauranteService.funcSaveRestaurante(restaurante);
+				model.addAttribute("msg", "Restaurante gravado com sucsso");
 			} catch (ValidationException e) {
 				errors.rejectValue("email", null, e.getMessage());
 			}
 		}
 		
 		ControllerHelper.funcSetEditMode(model, false);
-		return "cliente-cadastro";
+		ControllerHelper.addCategoriasToRequest(categoriaRestauranteRepository, model);
+		return "restaurante-cadastro";
 	}
 }

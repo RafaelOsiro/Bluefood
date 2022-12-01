@@ -1,4 +1,4 @@
-package io.ucb.rafael.bluefood.application;
+package io.ucb.rafael.bluefood.application.service;
 
 @SuppressWarnings("serial")
 public class ValidationException extends Exception {
