@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.ucb.rafael.bluefood.application.ClienteService;
 import io.ucb.rafael.bluefood.application.ValidationException;
 import io.ucb.rafael.bluefood.domain.cliente.Cliente;
+import io.ucb.rafael.bluefood.domain.restaurante.Restaurante;
 
 @Controller
 @RequestMapping(path = "/public")
@@ -27,6 +28,13 @@ public class PublicController {
 		model.addAttribute("cliente", new Cliente());
 		ControllerHelper.funcSetEditMode(model, false);
 		return "cliente-cadastro";
+	}
+	
+	@GetMapping("/restaurante/new")
+	public String funcNewRestaurante(Model model) {
+		model.addAttribute("restaurante", new Restaurante());
+		ControllerHelper.funcSetEditMode(model, false);
+		return "restaurante-cadastro";
 	}
 	
 	@PostMapping(path = "/cliente/save")
