@@ -7,7 +7,7 @@
 		    <div id="divMensagemDeSucesso" th:if="${msg != null}">
 		        <span th:text="${msg}"></span>
 		    </div><br/>
-		    <form method="post" th:action="${!editMode}?  @{/public/cliente/save} : @{/cliente/save}" th:object="${cliente}">
+		    <form method="post" th:action="${!editMode} ?  @{/public/cliente/save} : @{/cliente/save}" th:object="${cliente}">
 		        <fieldset>
 		            <input type="hidden" th:field="*{id}"/>
 		        
@@ -41,7 +41,7 @@
                        <span th:errors="*{cep}"></span>
                     </div><br th:if="${#fields.hasErrors('cep')}"/><br th:if="${#fields.hasErrors('cep')}"/>
 					
-					<div th:if={!editMode}>
+					<div th:if="${!editMode}">
 						<label for="senha" >Senha:</label><br/>
 						<input type="password" id="senha" name="senha" placeholder="Senha..." th:field="*{senha}" th:classappend="${#fields.hasErrors('senha')}? inputError : ''"/><br/><br th:if="!${#fields.hasErrors('senha')}"/>
 						<div id="divMensagemDeErro" th:if="${#fields.hasErrors('senha')}">

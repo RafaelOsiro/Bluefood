@@ -20,6 +20,7 @@ public class LoggedUser implements UserDetails {
 	
 	public LoggedUser(Usuario usuario) {
 		this.usuario = usuario;
+				
 		Role role;
 		
 		if (usuario instanceof Cliente) {

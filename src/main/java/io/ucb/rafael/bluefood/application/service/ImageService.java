@@ -1,6 +1,7 @@
 package io.ucb.rafael.bluefood.application.service;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,42 @@ import io.ucb.rafael.bluefood.util.IOUtils;
 public class ImageService {
 	
 	@Value("${bluefood.files.logotipo}")
-	private String logotipoDir;
+	private String logotiposDir;
+	
+	@Value("${bluefood.files.categoria}")
+	private String categoriasDir;
+	
+	@Value("${bluefood.files.comida}")
+	private String comidasDir;
 	
 	public void funcUploadLogtipo(MultipartFile multipartFile, String fileName) {
 		try {
-			IOUtils.copy(multipartFile.getInputStream(), fileName, logotipoDir);
+			IOUtils.copy(multipartFile.getInputStream(), fileName, logotiposDir);
 		} catch (IOException e) {
 			throw new ApplicationServiceException(e);
 		}
+	}
+	
+	public byte[] getBytes(String type, String imgName) {
+		
+		try {
+			
+			String dir;
+			
+			if ("comida".equals(type)) {
+				dir = comidasDir;
+			} else if ("logotipo".equals(type)) {
+				dir = logotiposDir;
+			} else if ("categoria".equals(type)) {
+				dir = categoriasDir;
+			} else {
+				throw new Exception(type + " não é um tipo de imagem válido");
+			}
+			
+			return IOUtils.getBytes(Paths.get(dir, imgName));
+			
+		} catch (Exception e) {
+			throw new ApplicationServiceException(e);
+		}		
 	}
 }
