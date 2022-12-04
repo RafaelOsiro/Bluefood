@@ -22,7 +22,7 @@ public class RestauranteService {
 	private ImageService imageService;
 	
 	@Transactional
-	public void funcSaveRestaurante(Restaurante restaurante) throws ValidationException {
+	public void saveRestaurante(Restaurante restaurante) throws ValidationException {
 		
 		if(!funcValidateEmail(restaurante.getEmail(), restaurante.getId())) {
 			throw new ValidationException("O e-mail está duplicado");
@@ -34,10 +34,10 @@ public class RestauranteService {
 			
 		// Gravação e criptografando a senha quando for usuário novo
 		} else {
-			restaurante.funcEncryptPassword();
+			restaurante.encryptPassword();
 			restaurante = restauranteRepository.save(restaurante);
 			restaurante.setLogotipoFileName();
-			imageService.funcUploadLogtipo(restaurante.getLogotipoFile(), restaurante.getLogotipo());
+			imageService.uploadLogtipo(restaurante.getLogotipoFile(), restaurante.getLogotipo());
 		}
 	}
 	

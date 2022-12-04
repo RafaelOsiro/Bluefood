@@ -47,7 +47,7 @@ public class PublicController {
 
 		if (!errors.hasErrors()) {
 			try {
-				clienteService.funcSaveCliente(cliente);
+				clienteService.saveCliente(cliente);
 				model.addAttribute("msg", "Cliente gravado com sucesso!");
 				
 			} catch (ValidationException e) {
@@ -77,7 +77,7 @@ public class PublicController {
 		if (!errors.hasErrors()) {
 			
 			try {
-				restauranteService.funcSaveRestaurante(restaurante);
+				restauranteService.saveRestaurante(restaurante);
 				model.addAttribute("msg", "Restaurante gravado com sucsso");
 			} catch (ValidationException e) {
 				errors.rejectValue("email", null, e.getMessage());

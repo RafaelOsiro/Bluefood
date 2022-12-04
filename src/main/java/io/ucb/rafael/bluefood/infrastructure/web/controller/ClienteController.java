@@ -39,7 +39,7 @@ public class ClienteController {
 	public String home(Model model) {
 		
 		List<CategoriaRestaurante> categorias = categoriaRestauranteRepository.findAll(Sort.by("nome"));
-		model.addAttribute(categorias);
+		model.addAttribute("categorias", categorias);
 		
 		return "cliente-home";
 	}
@@ -63,7 +63,7 @@ public class ClienteController {
 
 		if (!errors.hasErrors()) {
 			try {
-				clienteService.funcSaveCliente(cliente);
+				clienteService.saveCliente(cliente);
 				model.addAttribute("msg", "Cliente gravado com sucesso!");
 				
 			} catch (ValidationException e) {

@@ -53,7 +53,7 @@ public class InsertDataForTesting {
 		Restaurante r = new Restaurante();
 		r.setNome("Bubger King");
 		r.setEmail("contato@bubgerking.com.br");
-		r.setSenha(StringUtils.funcEncrypt("r"));
+		r.setSenha(StringUtils.encrypt("r"));
 		r.setCnpj("01234567890123");
 		r.setTaxaEntrega(BigDecimal.valueOf(3.20));
 		r.setTelefone("01234567890");
@@ -67,7 +67,7 @@ public class InsertDataForTesting {
 		r = new Restaurante();
 		r.setNome("Mc Naldo's");
 		r.setEmail("contato@mcnaldos.com.br");
-		r.setSenha(StringUtils.funcEncrypt("r"));
+		r.setSenha(StringUtils.encrypt("r"));
 		r.setCnpj("12345678901234");
 		r.setTaxaEntrega(BigDecimal.valueOf(4.50));
 		r.setTelefone("12345678901");
@@ -81,7 +81,7 @@ public class InsertDataForTesting {
 		r = new Restaurante();
 		r.setNome("Sbubby");
 		r.setEmail("contato@sbubby.com.br");
-		r.setSenha(StringUtils.funcEncrypt("r"));
+		r.setSenha(StringUtils.encrypt("r"));
 		r.setCnpj("23456789012345");
 		r.setTaxaEntrega(BigDecimal.valueOf(12.20));
 		r.setTelefone("23456789012");
@@ -95,7 +95,7 @@ public class InsertDataForTesting {
 		r = new Restaurante();
 		r.setNome("Pizza brut");
 		r.setEmail("contato@pizzabrut.com.br");
-		r.setSenha(StringUtils.funcEncrypt("r"));
+		r.setSenha(StringUtils.encrypt("r"));
 		r.setCnpj("34567890123456");
 		r.setTaxaEntrega(BigDecimal.valueOf(9.80));
 		r.setTelefone("34567890123");
@@ -109,7 +109,7 @@ public class InsertDataForTesting {
 		r = new Restaurante();
 		r.setNome("Wiki Japa");
 		r.setEmail("contato@wikijapa.com.br");
-		r.setSenha(StringUtils.funcEncrypt("r"));
+		r.setSenha(StringUtils.encrypt("r"));
 		r.setCnpj("45678901234567");
 		r.setTaxaEntrega(BigDecimal.valueOf(14.90));
 		r.setTelefone("45678901234");
@@ -130,7 +130,7 @@ public class InsertDataForTesting {
 		Cliente c = new Cliente();
 		c.setNome("João Silva");
 		c.setEmail("joaosilva@hotmail.com");
-		c.setSenha(StringUtils.funcEncrypt("c"));
+		c.setSenha(StringUtils.encrypt("c"));
 		c.setCep("01234567");
 		c.setCpf("01234567890");
 		c.setTelefone("01234567890");
@@ -140,7 +140,7 @@ public class InsertDataForTesting {
 		c = new Cliente();
 		c.setNome("Maria Torres");
 		c.setEmail("mariatorres@hotmail.com");
-		c.setSenha(StringUtils.funcEncrypt("c"));
+		c.setSenha(StringUtils.encrypt("c"));
 		c.setCep("12345678");
 		c.setCpf("12345678901");
 		c.setTelefone("12345678901");
@@ -150,7 +150,7 @@ public class InsertDataForTesting {
 		c = new Cliente();
 		c.setNome("teste");
 		c.setEmail("teste@teste");
-		c.setSenha(StringUtils.funcEncrypt("teste"));
+		c.setSenha(StringUtils.encrypt("teste"));
 		c.setCep("12345678");
 		c.setCpf("12345678901");
 		c.setTelefone("12345678901");

@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class StringUtils {
 	
-	public static boolean funcIsEmpty(String str) {
+	public static boolean isEmpty(String str) {
 		if (str == null) {
 			return true;
 		}
@@ -13,8 +13,8 @@ public class StringUtils {
 		return str.trim().length() == 0;
 	}
 	
-	public static String funcEncrypt(String rawString) {
-		if (funcIsEmpty(rawString)) {
+	public static String encrypt(String rawString) {
+		if (isEmpty(rawString)) {
 			return null;
 		}
 		

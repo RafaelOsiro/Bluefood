@@ -52,7 +52,7 @@ public class Usuario implements Serializable {
 	@NotNull(message = "O TELEFONE não pode ser nulo")
 	private String telefone;
 	
-	public void funcEncryptPassword() {
-		this.senha = StringUtils.funcEncrypt(this.senha);
+	public void encryptPassword() {
+		this.senha = StringUtils.encrypt(this.senha);
 	}
 }

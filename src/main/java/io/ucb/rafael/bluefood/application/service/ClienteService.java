@@ -19,9 +19,9 @@ public class ClienteService {
 	private RestauranteRepository restauranteRepository;
 	
 	@Transactional
-	public void funcSaveCliente(Cliente cliente) throws ValidationException {
+	public void saveCliente(Cliente cliente) throws ValidationException {
 		
-		if(!funcValidateEmail(cliente.getEmail(), cliente.getId())) {
+		if(!validateEmail(cliente.getEmail(), cliente.getId())) {
 			throw new ValidationException("O e-mail está duplicado");
 		}
 		
@@ -32,13 +32,13 @@ public class ClienteService {
 			
 		// Gravação e criptografando a senha quando for usuário novo
 		} else {
-			cliente.funcEncryptPassword();
+			cliente.encryptPassword();
 		}
 		
 		clienteRepository.save(cliente);
 	}
 	
-	private boolean funcValidateEmail(String email, Integer id) {
+	private boolean validateEmail(String email, Integer id) {
 		
 		Restaurante restaurante = restauranteRepository.findByEmail(email);
 		
