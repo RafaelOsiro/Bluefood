@@ -1,5 +1,8 @@
 package io.ucb.rafael.bluefood.application.service;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,7 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import io.ucb.rafael.bluefood.domain.cliente.Cliente;
 import io.ucb.rafael.bluefood.domain.cliente.ClienteRepository;
 import io.ucb.rafael.bluefood.domain.restaurante.Restaurante;
+import io.ucb.rafael.bluefood.domain.restaurante.RestauranteComparator;
 import io.ucb.rafael.bluefood.domain.restaurante.RestauranteRepository;
+import io.ucb.rafael.bluefood.domain.restaurante.SearchFilter;
+import io.ucb.rafael.bluefood.domain.restaurante.SearchFilter.SearchType;
+import io.ucb.rafael.bluefood.util.SecurityUtils;
 
 @Service
 public class RestauranteService {
@@ -65,5 +72,35 @@ public class RestauranteService {
 			}
 		}
 		return true;
+	}
+	
+	public List<Restaurante> search(SearchFilter filter) {
+		
+		List<Restaurante> restaurantes;
+		
+		if (filter.getSearchType() == SearchType.Texto) {
+			restaurantes = restauranteRepository.findByNomeIgnoringCaseContaining(filter.getTexto());
+		} else if (filter.getSearchType() == SearchType.Categoria) {
+			restaurantes = restauranteRepository.findByCategorias_Id(filter.getCategoriaId());
+		} else {
+			throw new IllegalStateException("O tipo de busca " + filter.getSearchType() + " não é suportado");
+		}
+		
+		Iterator<Restaurante> it = restaurantes.iterator();
+		
+		while (it.hasNext()) {
+			Restaurante restaurante = it.next();
+			double taxaEntrega = restaurante.getTaxaEntrega().doubleValue();
+			
+			if (filter.isEntregaGratis() && taxaEntrega > 0
+					|| !filter.isEntregaGratis() && taxaEntrega == 0) {
+				it.remove();
+			} 
+		}
+		
+		RestauranteComparator comparator = new RestauranteComparator(filter, SecurityUtils.loggedCliente().getCep());
+		restaurantes.sort(comparator);
+		
+		return restaurantes;
 	}
 }
