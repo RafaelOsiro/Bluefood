@@ -126,7 +126,7 @@ input[type=button], input[type=submit] {
 }
 
 /* Mudando as cores do botão e do submit quando o mouse passar em cima */
-input[type=button]:hover, input[type=submit] {
+input[type=button]:hover, input[type=submit]:hover {
 	background-color: #69c5ee;
 	border-color: #1e9bde;
 }

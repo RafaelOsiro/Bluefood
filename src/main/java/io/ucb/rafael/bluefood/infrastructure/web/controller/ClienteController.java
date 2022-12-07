@@ -21,6 +21,8 @@ import io.ucb.rafael.bluefood.application.service.RestauranteService;
 import io.ucb.rafael.bluefood.application.service.ValidationException;
 import io.ucb.rafael.bluefood.domain.cliente.Cliente;
 import io.ucb.rafael.bluefood.domain.cliente.ClienteRepository;
+import io.ucb.rafael.bluefood.domain.pedido.Pedido;
+import io.ucb.rafael.bluefood.domain.pedido.PedidoRepository;
 import io.ucb.rafael.bluefood.domain.restaurante.CategoriaRestaurante;
 import io.ucb.rafael.bluefood.domain.restaurante.CategoriaRestauranteRepository;
 import io.ucb.rafael.bluefood.domain.restaurante.ItemCardapio;
@@ -52,12 +54,18 @@ public class ClienteController {
 	@Autowired
 	private RestauranteRepository restauranteRepository;
 	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
 	@GetMapping(path = "/home")
 	public String home(Model model) {
 		
 		List<CategoriaRestaurante> categorias = categoriaRestauranteRepository.findAll(Sort.by("nome"));
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("searchFilter", new SearchFilter());
+		
+		List<Pedido>pedidos = pedidoRepository.listPedidosByCliente(SecurityUtils.loggedCliente().getId());
+		model.addAttribute("pedidos", pedidos);
 		
 		return "cliente-home";
 	}
