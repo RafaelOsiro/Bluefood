@@ -76,7 +76,7 @@ public class ClienteController {
 		Integer clienteId = SecurityUtils.loggedCliente().getId();
 		Cliente cliente = clienteRepository.findById(clienteId).orElseThrow();
 		model.addAttribute("cliente", cliente);
-		ControllerHelper.funcSetEditMode(model, true);
+		ControllerHelper.setEditMode(model, true);
 		
 		return "cliente-cadastro";
 	}
@@ -97,7 +97,7 @@ public class ClienteController {
 			}
 		}
 
-		ControllerHelper.funcSetEditMode(model, false);
+		ControllerHelper.setEditMode(model, false);
 		return "cliente-cadastro";
 	}
 	

@@ -110,7 +110,7 @@ public class Pedido implements Serializable {
 	public void definirProximoStatus() {
 		int ordem = status.getOrdem();
 		
-		Status newStatus = Status.fromOrdem(ordem +1);
+		Status newStatus = Status.fromOrdem(ordem + 1);
 		
 		if (newStatus != null) {
 			this.status = newStatus;

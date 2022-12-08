@@ -35,7 +35,7 @@ public class PublicController {
 	@GetMapping("/cliente/new")
 	public String newCliente(Model model) {
 		model.addAttribute("cliente", new Cliente());
-		ControllerHelper.funcSetEditMode(model, false);
+		ControllerHelper.setEditMode(model, false);
 		return "cliente-cadastro";
 	}
 	
@@ -55,14 +55,14 @@ public class PublicController {
 			}
 		}
 
-		ControllerHelper.funcSetEditMode(model, false);
+		ControllerHelper.setEditMode(model, false);
 		return "cliente-cadastro";
 	}
 	
 	@GetMapping("/restaurante/new")
 	public String funcNewRestaurante(Model model) {
 		model.addAttribute("restaurante", new Restaurante());
-		ControllerHelper.funcSetEditMode(model, false);
+		ControllerHelper.setEditMode(model, false);
 		
 		ControllerHelper.addCategoriasToRequest(categoriaRestauranteRepository, model);
 		
@@ -84,7 +84,7 @@ public class PublicController {
 			}
 		}
 		
-		ControllerHelper.funcSetEditMode(model, false);
+		ControllerHelper.setEditMode(model, false);
 		ControllerHelper.addCategoriasToRequest(categoriaRestauranteRepository, model);
 		return "restaurante-cadastro";
 	}

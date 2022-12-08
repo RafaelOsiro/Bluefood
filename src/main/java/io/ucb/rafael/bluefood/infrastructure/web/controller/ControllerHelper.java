@@ -10,7 +10,7 @@ import io.ucb.rafael.bluefood.domain.restaurante.CategoriaRestauranteRepository;
 
 public class ControllerHelper {
 
-	public static void funcSetEditMode(Model model, boolean isEdit) {
+	public static void setEditMode(Model model, boolean isEdit) {
 		model.addAttribute("editMode", isEdit);
 	}
 	

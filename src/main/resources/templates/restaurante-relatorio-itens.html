@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}" th:with="link=@{/restaurante/home}">
+    <body>
+        <div layout:fragment="content">
+        
+            <div>
+                <h1>Relatório de Itens</h1>
+	            <form method="get" th:action="@{/restaurante/relatorio/itens}" th:object="${relatorioItemFilter}">
+		            <fieldset>
+		              <legend>Filtros</legend>
+		                <label for="item">Item:</label><br/>
+                        <select  id="item" th:field="*{itemId}">
+                            <option value="0">Todos</option>
+                            <option th:each="item : ${itensCardapio}" th:value="${item.id}" th:text="${item.nome}"/>
+                        </select><br/>		
+                                        
+		                <label for="inicio">Início:</label><br/>
+		                <input type="date" id="inicio" name="inicio" placeholder="inicio" th:field="*{dataInicial}"/><br/>
+		                
+		                <label for="fim">Fim:</label><br/>
+		                <input type="date" id="fim" name="fim" placeholder="fim" th:field="*{dataFinal}"/><br/>
+		                
+		                <input type="submit" value="Buscar"/>
+		            </fieldset>
+		            <br/><br/>
+	            </form>
+            </div>
+            
+            <div th:if="${itensCalculados.size() == 0}" id="divMensagemDeErro">
+                <span>Nenhum produto encontrado.</span>
+            </div><br/><br/>
+            
+            <div th:if="${itensCalculados.size() > 0}">
+	            <table>
+	                <tr>
+	                    <th>Item</th>
+	                    <th>Quantidade</th>
+	                    <th>Faturamento</th>
+	                </tr>
+	                <tr th:each="item : ${itensCalculados}">
+	                    <td><span th:text="${item.nome}"></span></td>
+	                    <td><span th:text="${item.quantidade}"></span></td>
+	                    <td><span th:text="${#numbers.formatCurrency(item.valor)}"></span></td>
+	                </tr>
+	            </table>
+            </div><br/><br/>
+            
+            <input type="submit" value="Voltar" th:onclick="'location.href=\'' + @{/restaurante/home} + '\''"/>
+        
+        </div>
+    </body>
+</html>

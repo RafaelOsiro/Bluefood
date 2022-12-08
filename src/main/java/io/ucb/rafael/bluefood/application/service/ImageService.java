@@ -21,7 +21,8 @@ public class ImageService {
 	@Value("${bluefood.files.comida}")
 	private String comidasDir;
 	
-	public void uploadLogtipo(MultipartFile multipartFile, String fileName) {
+	
+	public void uploadLogotipo(MultipartFile multipartFile, String fileName) {
 		try {
 			IOUtils.copy(multipartFile.getInputStream(), fileName, logotiposDir);
 		} catch (IOException e) {
@@ -29,26 +30,35 @@ public class ImageService {
 		}
 	}
 	
-	public byte[] getBytes(String type, String imgName) {
-		
+	public void uploadComida(MultipartFile multipartFile, String fileName) {
 		try {
-			
+			IOUtils.copy(multipartFile.getInputStream(), fileName, comidasDir);
+		} catch (IOException e) {
+			throw new ApplicationServiceException(e);
+		}
+	}
+	
+	public byte[] getBytes(String type, String imgName) {
+		try {
 			String dir;
 			
 			if ("comida".equals(type)) {
 				dir = comidasDir;
+				
 			} else if ("logotipo".equals(type)) {
 				dir = logotiposDir;
+				
 			} else if ("categoria".equals(type)) {
 				dir = categoriasDir;
+				
 			} else {
-				throw new Exception(type + " não é um tipo de imagem válido");
+				throw new Exception(type + " não é um tipo de imagem válido.");
 			}
 			
 			return IOUtils.getBytes(Paths.get(dir, imgName));
 			
 		} catch (Exception e) {
 			throw new ApplicationServiceException(e);
-		}		
+		}
 	}
 }

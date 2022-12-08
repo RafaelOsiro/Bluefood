@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import io.ucb.rafael.bluefood.domain.cliente.Cliente;
 import io.ucb.rafael.bluefood.domain.cliente.ClienteRepository;
+import io.ucb.rafael.bluefood.domain.restaurante.ItemCardapio;
+import io.ucb.rafael.bluefood.domain.restaurante.ItemCardapioRepository;
 import io.ucb.rafael.bluefood.domain.restaurante.Restaurante;
 import io.ucb.rafael.bluefood.domain.restaurante.RestauranteComparator;
 import io.ucb.rafael.bluefood.domain.restaurante.RestauranteRepository;
@@ -28,27 +30,32 @@ public class RestauranteService {
 	@Autowired
 	private ImageService imageService;
 	
+	@Autowired
+	private ItemCardapioRepository itemCardapioRespository;
+	
 	@Transactional
 	public void saveRestaurante(Restaurante restaurante) throws ValidationException {
 		
-		if(!funcValidateEmail(restaurante.getEmail(), restaurante.getId())) {
+		if(!validateEmail(restaurante.getEmail(), restaurante.getId())) {
 			throw new ValidationException("O e-mail está duplicado");
 		}
 		
 		if (restaurante.getId() != null) {
 			Restaurante restauranteDB = restauranteRepository.findById(restaurante.getId()).orElseThrow();
 			restaurante.setSenha(restauranteDB.getSenha());
+			restaurante.setLogotipo(restauranteDB.getLogotipo());
+			restauranteRepository.save(restaurante);
 			
 		// Gravação e criptografando a senha quando for usuário novo
 		} else {
 			restaurante.encryptPassword();
 			restaurante = restauranteRepository.save(restaurante);
 			restaurante.setLogotipoFileName();
-			imageService.uploadLogtipo(restaurante.getLogotipoFile(), restaurante.getLogotipo());
+			imageService.uploadLogotipo(restaurante.getLogotipoFile(), restaurante.getLogotipo());
 		}
 	}
 	
-	private boolean funcValidateEmail(String email, Integer id) {
+	private boolean validateEmail(String email, Integer id) {
 		
 		Cliente cliente = clienteRepository.findByEmail(email);
 		
@@ -102,5 +109,12 @@ public class RestauranteService {
 		restaurantes.sort(comparator);
 		
 		return restaurantes;
+	}
+	
+	@Transactional
+	public void saveItemItemCardapio(ItemCardapio itemCardapio) {
+		itemCardapio = itemCardapioRespository.save(itemCardapio);
+		itemCardapio.setImagemFileName();
+		imageService.uploadComida(itemCardapio.getImagemFile(), itemCardapio.getImagem());
 	}
 }

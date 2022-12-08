@@ -11,7 +11,7 @@
 	        
 	        <div id="divMensagemDeErro">
                 <span th:text="'STATUS: ' + ${pedido.status.descricao}"></span>
-	        </div>
+	        </div><br/><br/>
 	        
 	        <div>
                 <img th:src="@{/images/logotipo/} + ${pedido.restaurante.logotipo}">
@@ -22,7 +22,6 @@
 	            <span th:text="'Quantidade: ' + ${item.quantidade}"></span><br/>
 	            <span th:text="'Observação: ' + ${item.observacoes}"></span><br/>
 	            <span th:text="${#numbers.formatCurrency(item.preco)}"></span><br/><br/>
-	            <input type="button" value="Remover"/>
 	        </div>
 	        <br/><br/>
 	        
